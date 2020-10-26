@@ -7,10 +7,10 @@ from transactions import Transactions
 
 
 class Okra():
-    def __init__(self, API_KEY, CLIENT_TOKEN, PRIVATE_TOKEN):
+    def __init__(self, PRIVATE_TOKEN):
 
         classes = (Auth, Balance, Identity, Records, Transactions, )
 
         for _class in classes:
-            attr = _class(API_KEY, CLIENT_TOKEN, PRIVATE_TOKEN)
+            attr = _class(PRIVATE_TOKEN)
             setattr(self, _class.__name__, attr)

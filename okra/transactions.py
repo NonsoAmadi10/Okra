@@ -1,3 +1,3 @@
 class Transactions():
-    def __init__(self, API_KEY, CLIENT_TOKEN, PRIVATE_TOKEN):
+    def __init__(self, PRIVATE_TOKEN):
         pass
