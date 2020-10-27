@@ -27,7 +27,7 @@ class Auth(OkraBase):
 
         return response.json()
 
-    def get_by_id(self, id: str):
+    def get_by_id(self, id):
         url = self._base_url + self.endpoints_dict["auth"]["get_by_id"]
 
         # Validate empty body and parameter type
@@ -73,6 +73,9 @@ class Auth(OkraBase):
         except ValueError:
             raise ValueError("Incorrect data format, should be YYYY-MM-DD")
 
+        if _to < _from:
+            raise Exception(
+                "The start date cannot be greater than the end date")
         # Make the API call
         response = requests.post(url, headers=self.headers, data={
                                  "from": _from, "to": _to})
@@ -106,6 +109,9 @@ class Auth(OkraBase):
         except ValueError:
             raise ValueError("Incorrect data format, should be YYYY-MM-DD")
 
+        if _to < _from:
+            raise Exception(
+                "The start date cannot be greater than the end date")
         # Validate parameter type
         if type(customer) != str:
             raise TypeError(
