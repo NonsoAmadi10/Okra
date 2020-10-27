@@ -43,3 +43,17 @@ class Auth(OkraBase):
         response = requests.post(url, headers=self.headers, data={"id": id})
 
         return response.json()
+
+    def get_by_customer(self, customer):
+        url = self._base_url + self.endpoints_dict["auth"]["customer"]
+
+        # Validate parameter type
+        if type(customer) != str:
+            raise TypeError(
+                f"\n Expecting an id type of string but got {type(id)}\n")
+
+        # Make API request
+
+        response = requests.post(url, headers=self.headers, data={"id": id})
+
+        return response.json()
