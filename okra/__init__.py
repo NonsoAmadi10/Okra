@@ -1,4 +1,4 @@
-from .okra import Okra
+from okra.entry import Okra
 
 name = "Okra_py"
 __version__ = '1.0.1'
