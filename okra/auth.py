@@ -51,29 +51,67 @@ class Auth(OkraBase):
         # Validate parameter type
         if type(customer) != str:
             raise TypeError(
-                f"\n Expecting an id type of string but got {type(id)}\n")
+                f"\n Expecting a customer type of string but got {type(id)}\n")
 
         # Make API request
 
-        response = requests.post(url, headers=self.headers, data={"id": id})
+        response = requests.post(url, headers=self.headers, data={
+                                 "customer": customer})
 
         return response.json()
 
     def get_by_date(self, _from, _to):
 
-        url = self._base_url + self.endpoints_dict["auth"]["by_date
-
+        url = self._base_url + self.endpoints_dict["auth"]["by_date"]
 
         # Check if the date format is in the order YYYY-MM_DD
         date_format = '%Y-%m-%d'
         try:
-          _from= datetime.datetime.strptime(_from, date_format)
-          _to = datetime.datetime.strptime(_to, date_format)
+            _from = datetime.datetime.strptime(_from, date_format)
+            _to = datetime.datetime.strptime(_to, date_format)
 
         except ValueError:
-           raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+            raise ValueError("Incorrect data format, should be YYYY-MM-DD")
 
         # Make the API call
-        response = requests.post(url, headers=self.headers, data={"from": _from, "to": _to})
+        response = requests.post(url, headers=self.headers, data={
+                                 "from": _from, "to": _to})
+
+        return response.json()
+
+    def get_by_bank(self, bank_id):
+        url = self._base_url + self.endpoints_dict["auth"]["by_bank"]
+
+        # Validate parameter type
+        if type(bank_id) != str:
+            raise TypeError(
+                f"\n Expecting an id type of string but got {type(id)}\n")
+
+        # Make API request
+
+        response = requests.post(
+            url, headers=self.headers, data={"bank": bank_id})
+
+        return response.json()
+
+    def get_by_customer_date(self, _from, _to, customer):
+        url = self._base_url + self.endpoints_dict["auth"]["customer_date"]
+
+        # Check if the date format is in the order YYYY-MM_DD
+        date_format = '%Y-%m-%d'
+        try:
+            _from = datetime.datetime.strptime(_from, date_format)
+            _to = datetime.datetime.strptime(_to, date_format)
+
+        except ValueError:
+            raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+
+        # Validate parameter type
+        if type(customer) != str:
+            raise TypeError(
+                f"\n Expecting a customer type of string but got {type(id)}\n")
+
+        response = requests.post(url, headers=self.headers, data={
+                                 "from": _from, "to": _to, "customer": customer})
 
         return response.json()
