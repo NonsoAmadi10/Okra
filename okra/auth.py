@@ -19,9 +19,9 @@ class Auth(OkraBase):
 
     def all(self):
         url = self._base_url + self.endpoints_dict["auth"]["all"]
-        ub = self._base_url + "banks/list"
 
-        response = requests.post(url, headers={
-                                 "content-type": "application/json", "authorization": f"Bearer {self.access_token}"})
+        # make API request here with the appropriate request parameters
+
+        response = requests.post(url, headers=self.headers)
 
         return response.json()

@@ -26,8 +26,8 @@ class OkraBase(object):
                 '\n Please provide as argument your private token provided on your dashboard \n')
         else:
             self.access_token = PRIVATE_TOKEN
-            self.headers = lambda: {
-                "Authorization": f"Bearer {self.access_token}", "Content-Type": "application/json"}
+            self.headers = {
+                "authorization": f"Bearer {self.access_token}", "content-type": "application/json"}
 
     # check env to determine which base url to use when making api calls
         if os.environ.get('ENV') == 'prod':
