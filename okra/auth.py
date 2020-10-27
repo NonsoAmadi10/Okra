@@ -1,5 +1,6 @@
 import requests
 from .okra_base import OkraBase
+import datetime
 
 
 class Auth(OkraBase):
@@ -55,5 +56,24 @@ class Auth(OkraBase):
         # Make API request
 
         response = requests.post(url, headers=self.headers, data={"id": id})
+
+        return response.json()
+
+    def get_by_date(self, _from, _to):
+
+        url = self._base_url + self.endpoints_dict["auth"]["by_date
+
+
+        # Check if the date format is in the order YYYY-MM_DD
+        date_format = '%Y-%m-%d'
+        try:
+          _from= datetime.datetime.strptime(_from, date_format)
+          _to = datetime.datetime.strptime(_to, date_format)
+
+        except ValueError:
+           raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+
+        # Make the API call
+        response = requests.post(url, headers=self.headers, data={"from": _from, "to": _to})
 
         return response.json()
