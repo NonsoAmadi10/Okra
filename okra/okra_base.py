@@ -19,6 +19,16 @@ class OkraBase(object):
                 "by_bank": "auth/getByBank",
                 "customer_date": "auth/getByCustomerDate"
 
+            },
+            "balance": {
+                "get_balance": "products/balances",
+                "by_id": "balance/getById",
+                "by_customer": "balance/getByCustomer",
+                "by_account": "balance/getByAccount",
+                "by_date": "balance/getByDate",
+                "by_type": "balance/getByType",
+                "by_customer_date": "balance/getByCustomerDate",
+                "periodic": "products/balance/periodic"
             }
         }
         if not PRIVATE_TOKEN:
