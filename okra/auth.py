@@ -1,6 +1,5 @@
 import requests
 from .okra_base import OkraBase
-import datetime
 from .utils import validate_dates, validate_id, validate_date_id
 
 
