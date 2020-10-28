@@ -7,7 +7,7 @@ class Balance(OkraBase):
 
     """ This handles all balance requests to the okra API. This contains the following functions.\n
 
-    Keyword arguments:
+    Key functions:
     get_balances -- This returns the realtime balance for each of a record's account.
     by_id -- This returns the balance info using the id of the balance
     by_customer -- This returns the balance info using the id of the customer

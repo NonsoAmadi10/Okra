@@ -42,6 +42,28 @@ class OkraBase(object):
                 "spending_pattern": "products/transactions/spending-pattern",
                 "customer_date": "transactions/getByCustomerDate",
                 "periodic": "products/transactions/periodic"
+            },
+            "identity": {
+                "get_identities": "products/identities",
+                "by_id": "identity/getById",
+                "by_options": "identity/byOptions",
+                "by_customer": "identity/getByCustomer",
+                "by_date": "identity/getByDate",
+                "customer_date": "identity/getByCustomerDate"
+            },
+
+            "income": {
+                "get_income": "products/income/get",
+                "by_id": "income/getById",
+                "by_customer": "income/getByCustomer",
+                "process": "income/process",
+                "customer_date": "income/getByCustomerDate"
+            },
+
+            "records": {
+                "get_all": "products/records",
+                "remove_record": "customers/remove"
+
             }
         }
         if not PRIVATE_TOKEN:
