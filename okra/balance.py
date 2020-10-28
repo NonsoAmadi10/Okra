@@ -43,3 +43,103 @@ class Balance(OkraBase):
         response = requests.post(url, headers=self.headers, data={"id": id})
 
         return response.json()
+
+    @validate_id
+    def by_customer(self, customer):
+        """
+        Keyword Arguments:
+
+        customer -- customer id info
+        Returns -- JSON object
+        """
+        url = self._base_url + self.endpoints_dict["balance"]["by_customer"]
+        response = requests.post(url, headers=self.headers, data={
+                                 "customer": customer})
+
+        return response.json()
+
+    @validate_id
+    def by_account_id(self, account):
+        """    
+        Keyword arguments:
+        account -- account id info
+        Return: JSON object
+        """
+
+        url = self._base_url + self.endpoints_dict["balance"]["by_account"]
+        response = requests.post(
+            url, headers=self.headers, data={"account": account})
+
+        return response.json()
+
+    @validate_dates
+    def by_date_range(self, _from, _to):
+        """
+
+        Keyword arguments:
+        _from -- The start date
+        _to -- The end date
+        Return: JSON object
+        """
+
+        url = self._base_url + self.endpoints_dict["balance"]["by_date"]
+        response = requests.post(url, headers=self.headers, data={
+                                 "from": _from, "to": _to})
+
+        return response.json()
+
+    @validate_id
+    def by_type(self, _type, value):
+        """
+        Keyword arguments:
+        _type -- The type of balance e.g ledger balance , available balance
+        value -- The amount e.g 400 but in string
+        Return: JSON object
+        """
+
+        url = self._base_url + self.endpoints_dict["balance"]["by_date"]
+        response = requests.post(url, headers=self.headers, data={
+                                 "type": _type, "value": value})
+
+        return response.json()
+
+    @validate_date_id
+    def by_customer_date(self, _from, _to, customer):
+        """
+        Keyword arguments:
+        _from -- The start date e.g 2020-12-25
+        _to -- The end date e.g 2020-12-29
+        customer -- The customer id info
+        Return: JSON object
+        """
+
+        url = self._base_url + \
+            self.endpoints_dict["balance"]["by_customer_date"]
+        response = requests.post(url, headers=self.headers, data={
+                                 "from": _from, "to": _to, "customer": customer})
+
+        return response.json()
+
+    def get_periodic(self, account_id, record_id, currency="NGN"):
+        """sumary_line
+
+        Keyword arguments:
+        account_id -- The account id 
+        record_id -- The record id
+        currency  -- The account's currency e.g NGN, GBP, USD
+        Return: return_description
+        """
+
+        if (type(account_id) != str) or (type(record_id) != str) or (type(currency) != str):
+            raise TypeError(
+                "Expecting all input parameters to be of type string ")
+
+        if len(currency) < 3:
+            raise Exception(
+                "The account's currency must be 3 in length. e.g NGN, GBP, USD, CAD")
+
+        url = self._base_url + self.endpoints_dict["balance"]["periodic"]
+        response = requests.post(url, headers=self.headers, data={
+                                 "account_id": account_id, "record_id": record_id, "currency": currency})
+
+        return response.json()
