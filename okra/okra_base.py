@@ -19,6 +19,51 @@ class OkraBase(object):
                 "by_bank": "auth/getByBank",
                 "customer_date": "auth/getByCustomerDate"
 
+            },
+            "balance": {
+                "get_balance": "products/balances",
+                "by_id": "balance/getById",
+                "by_customer": "balance/getByCustomer",
+                "by_account": "balance/getByAccount",
+                "by_date": "balance/getByDate",
+                "by_type": "balance/getByType",
+                "by_customer_date": "balance/getByCustomerDate",
+                "periodic": "products/balance/periodic"
+            },
+            "transactions": {
+                "get_transactions": "products/balances",
+                "by_id": "transactions/getById",
+                "by_options": "transactions/byOptions",
+                "customer": "transactions/getByCustomer",
+                "by_account": "transactions/getByAccount",
+                "by_date": "transactions/getByDate",
+                "by_bank": "transactions/getByBank",
+                "by_type": "transactions/getByType",
+                "spending_pattern": "products/transactions/spending-pattern",
+                "customer_date": "transactions/getByCustomerDate",
+                "periodic": "products/transactions/periodic"
+            },
+            "identity": {
+                "get_identities": "products/identities",
+                "by_id": "identity/getById",
+                "by_options": "identity/byOptions",
+                "by_customer": "identity/getByCustomer",
+                "by_date": "identity/getByDate",
+                "customer_date": "identity/getByCustomerDate"
+            },
+
+            "income": {
+                "get_income": "products/income/get",
+                "by_id": "income/getById",
+                "by_customer": "income/getByCustomer",
+                "process": "income/process",
+                "customer_date": "income/getByCustomerDate"
+            },
+
+            "records": {
+                "get_all": "products/records",
+                "remove_record": "customers/remove"
+
             }
         }
         if not PRIVATE_TOKEN:

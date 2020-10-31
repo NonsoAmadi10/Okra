@@ -1,6 +1,6 @@
 import requests
 from .okra_base import OkraBase
-import datetime
+from .utils import validate_dates, validate_id, validate_date_id
 
 
 class Auth(OkraBase):
@@ -27,6 +27,7 @@ class Auth(OkraBase):
 
         return response.json()
 
+    @validate_id
     def get_by_id(self, id):
         url = self._base_url + self.endpoints_dict["auth"]["get_by_id"]
 
@@ -35,24 +36,15 @@ class Auth(OkraBase):
             raise ValueError(
                 "\n Please enter the id value of the authentication record\n")
 
-        if type(id) != str:
-            raise TypeError(
-                f"\n Expecting an id type of string but got {type(id)}\n")
-
         # Make API request
 
         response = requests.post(url, headers=self.headers, data={"id": id})
 
         return response.json()
 
+    @validate_id
     def get_by_customer(self, customer):
         url = self._base_url + self.endpoints_dict["auth"]["customer"]
-
-        # Validate parameter type
-        if type(customer) != str:
-            raise TypeError(
-                f"\n Expecting a customer type of string but got {type(id)}\n")
-
         # Make API request
 
         response = requests.post(url, headers=self.headers, data={
@@ -60,35 +52,20 @@ class Auth(OkraBase):
 
         return response.json()
 
+    @validate_dates
     def get_by_date(self, _from, _to):
 
         url = self._base_url + self.endpoints_dict["auth"]["by_date"]
 
-        # Check if the date format is in the order YYYY-MM_DD
-        date_format = '%Y-%m-%d'
-        try:
-            _from = datetime.datetime.strptime(_from, date_format)
-            _to = datetime.datetime.strptime(_to, date_format)
-
-        except ValueError:
-            raise ValueError("Incorrect data format, should be YYYY-MM-DD")
-
-        if _to < _from:
-            raise Exception(
-                "The start date cannot be greater than the end date")
         # Make the API call
         response = requests.post(url, headers=self.headers, data={
                                  "from": _from, "to": _to})
 
         return response.json()
 
+    @validate_id
     def get_by_bank(self, bank_id):
         url = self._base_url + self.endpoints_dict["auth"]["by_bank"]
-
-        # Validate parameter type
-        if type(bank_id) != str:
-            raise TypeError(
-                f"\n Expecting an id type of string but got {type(id)}\n")
 
         # Make API request
 
@@ -97,26 +74,9 @@ class Auth(OkraBase):
 
         return response.json()
 
+    @validate_date_id
     def get_by_customer_date(self, _from, _to, customer):
         url = self._base_url + self.endpoints_dict["auth"]["customer_date"]
-
-        # Check if the date format is in the order YYYY-MM_DD
-        date_format = '%Y-%m-%d'
-        try:
-            _from = datetime.datetime.strptime(_from, date_format)
-            _to = datetime.datetime.strptime(_to, date_format)
-
-        except ValueError:
-            raise ValueError("Incorrect data format, should be YYYY-MM-DD")
-
-        if _to < _from:
-            raise Exception(
-                "The start date cannot be greater than the end date")
-        # Validate parameter type
-        if type(customer) != str:
-            raise TypeError(
-                f"\n Expecting a customer type of string but got {type(id)}\n")
-
         response = requests.post(url, headers=self.headers, data={
                                  "from": _from, "to": _to, "customer": customer})
 
