@@ -5,17 +5,17 @@ with open('README.md', 'r') as fh:
 
 
 setuptools.setup(
-    name="okra-py-houdini10",
+    name="okrapy",
     verrsion="1.0.0",
     author="Houdini10",
     author_email="nonsoamadi@aol.com",
-    description="Integrate the Okra API seamlessly in your python app",
+    description="A Python plugin for the okra API",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/NonsoAmadi10/Okra.git",
     packages=setuptools.find_packages(),
     classifiers=[
-        "Programming Language ::Python::3",
+        "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],

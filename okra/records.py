@@ -9,7 +9,7 @@ class Records(OkraBase):
 
     Key functions:
     get_all -- retrieves both failed and successful records
-    Return: return_description
+    remove_record -- removes a customer record associated to your company.
     """
 
     def __init__(self, PRIVATE_TOKEN):
@@ -25,7 +25,7 @@ class Records(OkraBase):
         """Removes a customer associated with your company
 
         Keyword arguments:
-        record -- record id
+       param_ record -- record id
         Return -- JSON object
         """
         url = self._base_url + self.endpoints_dict["records"]["remove_record"]
