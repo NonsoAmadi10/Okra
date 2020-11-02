@@ -9,7 +9,7 @@
 ## Installation
 
 To install, simply run:
-> ` pip install okrapy`
+> ` pip install pyokra-houdini10`
 
 
 ### How to use 

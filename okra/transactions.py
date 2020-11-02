@@ -23,7 +23,7 @@ class Transactions(OkraBase):
     """
 
     def __init__(self, PRIVATE_TOKEN):
-        super(Transactions, self).__int__(PRIVATE_TOKEN)
+        super(Transactions, self).__init__(PRIVATE_TOKEN)
 
     def all(self):
         """

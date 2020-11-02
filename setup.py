@@ -5,8 +5,8 @@ with open('README.md', 'r') as fh:
 
 
 setuptools.setup(
-    name="okrapy",
-    verrsion="1.0.0",
+    name="pyokra-houdini10",
+    verrsion="1.0.1",
     author="Houdini10",
     author_email="nonsoamadi@aol.com",
     description="A Python plugin for the okra API",
